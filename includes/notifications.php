@@ -21,15 +21,22 @@ function setup() {
 		return __NAMESPACE__ . "\\$function";
 	};
 
-	add_action( 'admin_menu', $n( 'add_notification_page' ) );
+	add_action( 'admin_bar_menu', $n( 'add_admin_bar_menu' ), PHP_INT_MAX );
 }
 
 /**
- * Add notification page under the dashboard
+ * For 0.1.0.1 version only.
+ *
+ * @param  WP_Admin_Bar $admin_bar
+ * @return void.
  */
-function add_notification_page() {
+function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
 
-	$menu_title = esc_html__( 'Notifications', 'unagi' );
+   if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+   	$menu_title = esc_html__( 'Notifications', 'unagi' );
 
 	/**
 	 * Don't need to display count if we are not showing the output in the nice way
@@ -41,13 +48,16 @@ function add_notification_page() {
 		}
 	}
 
-	add_dashboard_page(
-		esc_html__( 'Notifications', 'unagi' ),
-		$menu_title,
-		required_capability(),
-		'notification',
-		__NAMESPACE__ . '\notification_screen'
-	);
+    $admin_bar->add_menu( array(
+        'id'    => 'notifications',
+        'parent' => null,
+        'group'  => null,
+        'title' => $menu_title,
+        'href'  => admin_url('index.php?page=notification'),
+        'meta' => [
+            'title' => esc_html__( 'Notifications', 'unagi' ), //This title will show on hover
+        ]
+    ) );
 }
 
 /**
