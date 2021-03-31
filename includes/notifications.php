@@ -143,21 +143,19 @@ function prepare_notification_info() {
 }
 ?>
 <style>
-	.unagi-notifications {
-		display: inline-block;
-	    vertical-align: top;
-	    box-sizing: border-box;
-	    margin: 0 0 5px 5px !important;
-	    padding: 0 5px;
-	    min-width: 18px;
-	    height: 18px;
-	    border-radius: 9px;
-	    background-color: #d63638;
-	    color: #fff;
-	    font-size: 11px;
-	    line-height: 1.6;
-	    text-align: center;
-	    z-index: 26;
-	    border-radius: 10px !important;
+	.unagi-notifications-count {
+	    display: inline-block !important;
+	    vertical-align: top !important;
+	    box-sizing: border-box !important;
+	    margin: 7px 0 0 2px !important;
+	    padding: 0 5px !important;
+	    min-width: 18px !important;
+	    height: 18px !important;
+	    border-radius: 9px !important;
+	    background-color: #ca4a1f !important;
+	    color: #fff !important;
+	    font-size: 11px !important;
+	    line-height: 1.6 !important;
+	    text-align: center !important;
 	}
 </style>
