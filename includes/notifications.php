@@ -23,6 +23,7 @@ function setup() {
 
 	add_action( 'admin_bar_menu', $n( 'add_admin_bar_menu' ), PHP_INT_MAX );
 	add_action( 'admin_enqueue_scripts', $n( 'enqueues' ) );
+	add_action( 'admin_init', $n( 'notification_screen' ) );
 }
 
 /**
@@ -74,7 +75,7 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
         'parent' => null,
         'group'  => null,
         'title' => $menu_title,
-        'href'  => admin_url('index.php?page=notification'),
+        'href'  => admin_url( '?page=unagi-notifications' ),
         'meta' => [
             'title' => esc_html__( 'Notifications', 'unagi' ), // This title will show on hover.
         ]
@@ -85,6 +86,7 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
  * Notification page
  */
 function notification_screen() {
+
 	global $unagi_nags;
 
 	$output = $unagi_nags;
