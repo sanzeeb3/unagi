@@ -38,9 +38,9 @@ function enqueues() {
 		return;
 	}
 
-   if ( ! current_user_can( 'manage_options' ) ) {
-        return;
-    }
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
 
 	wp_enqueue_style( 'unagi-admin-bar', UNAGI_URL . '/assets/css/admin/admin-style.css', array(), UNAGI_VERSION, $media = 'all' );
 }
