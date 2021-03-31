@@ -22,6 +22,27 @@ function setup() {
 	};
 
 	add_action( 'admin_bar_menu', $n( 'add_admin_bar_menu' ), PHP_INT_MAX );
+	add_action( 'admin_enqueue_scripts', $n( 'enqueues' ) );
+}
+
+/**
+ * For 0.1.0.1 version only.
+ *
+ * Enqueue CSS for admin bar.
+ *
+ * @return void.
+ */
+function enqueues() {
+
+	if ( ! is_admin_bar_showing() ) {
+		return;
+	}
+
+   if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+	wp_enqueue_style( 'unagi-admin-bar', UNAGI_URL . '/assets/css/admin/admin-style.css', array(), UNAGI_VERSION, $media = 'all' );
 }
 
 /**
@@ -141,21 +162,3 @@ function prepare_notification_info() {
 		'content' => $content,
 	];
 }
-?>
-<style>
-	.unagi-notifications-count {
-	    display: inline-block !important;
-	    vertical-align: top !important;
-	    box-sizing: border-box !important;
-	    margin: 7px 0 0 2px !important;
-	    padding: 0 5px !important;
-	    min-width: 18px !important;
-	    height: 18px !important;
-	    border-radius: 9px !important;
-	    background-color: #ca4a1f !important;
-	    color: #fff !important;
-	    font-size: 11px !important;
-	    line-height: 1.6 !important;
-	    text-align: center !important;
-	}
-</style>
