@@ -36,7 +36,7 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
         return;
     }
 
-   	$menu_title = esc_html__( 'Notifications', 'unagi' );
+	$menu_title = esc_html__( 'Notifications', 'unagi' );
 
 	/**
 	 * Don't need to display count if we are not showing the output in the nice way
@@ -44,7 +44,7 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
 	if ( show_notifications_nicely() ) {
 		$notification_info = prepare_notification_info();
 		if ( $notification_info['count'] > 0 ) {
-			$menu_title .= sprintf( '<span class="update-plugins"><span class="update-count">%d</span></span>', absint( $notification_info['count'] ) );
+			$menu_title .= sprintf( '<span class="unagi-notifications"><span class="unagi-notifications-count">%d</span></span>', absint( $notification_info['count'] ) );
 		}
 	}
 
@@ -55,7 +55,7 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
         'title' => $menu_title,
         'href'  => admin_url('index.php?page=notification'),
         'meta' => [
-            'title' => esc_html__( 'Notifications', 'unagi' ), //This title will show on hover
+            'title' => esc_html__( 'Notifications', 'unagi' ), // This title will show on hover.
         ]
     ) );
 }
@@ -141,3 +141,23 @@ function prepare_notification_info() {
 		'content' => $content,
 	];
 }
+?>
+<style>
+	.unagi-notifications {
+		display: inline-block;
+	    vertical-align: top;
+	    box-sizing: border-box;
+	    margin: 0 0 5px 5px !important;
+	    padding: 0 5px;
+	    min-width: 18px;
+	    height: 18px;
+	    border-radius: 9px;
+	    background-color: #d63638;
+	    color: #fff;
+	    font-size: 11px;
+	    line-height: 1.6;
+	    text-align: center;
+	    z-index: 26;
+	    border-radius: 10px !important;
+	}
+</style>
