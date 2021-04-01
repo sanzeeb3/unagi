@@ -4,7 +4,7 @@ Tags:              notification,nags,admin notice,
 Requires at least: 5.0
 Tested up to:      5.7
 Requires PHP:      5.6
-Stable tag:        0.1.0
+Stable tag:        5.0.0
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ This plugin only respects the messages that use `notice` class.  And, the notice
 3. Notifications screen
 
 == Changelog ==
+
+= 5.0.0 =
+* Change - Notification page from admin menu to admin bar.
 
 = 0.1.0 =
 * First release
