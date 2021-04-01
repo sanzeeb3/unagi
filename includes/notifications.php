@@ -52,9 +52,14 @@ function enqueues() {
  */
 function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
 
-   if ( ! current_user_can( 'manage_options' ) ) {
-        return;
-    }
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+	    return;
+	}
+
 
 	$menu_title = esc_html__( 'Notifications', 'unagi' );
 
