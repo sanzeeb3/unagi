@@ -109,8 +109,6 @@ function notification_screen() {
 		return;
 	}
 
-	check_admin_referer( 'unagi-notifications-nonce' );
-
 	global $unagi_nags;
 
 	$output = $unagi_nags;
