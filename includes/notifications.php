@@ -73,7 +73,7 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
         'parent' => null,
         'group'  => null,
         'title' => $menu_title,
-        'href'  => wp_nonce_url( admin_url( 'admin.php?page=unagi-notifications' ), 'unagi-notifications-nonce' ),
+        'href'  => admin_url( 'admin.php?page=unagi-notifications' ), 'unagi-notifications-nonce',
         'meta' => [
             'title' => esc_html__( 'Notifications', 'unagi' ), // This title will show on hover.
         ]
