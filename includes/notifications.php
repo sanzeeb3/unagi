@@ -27,8 +27,6 @@ function setup() {
 }
 
 /**
- * For 0.1.0.1 version only.
- *
  * Enqueue CSS for admin bar.
  *
  * @return void.
@@ -47,7 +45,7 @@ function enqueues() {
 }
 
 /**
- * For 0.1.0.1 version only.
+ * Add admin bar menu.
  *
  * @param  WP_Admin_Bar $admin_bar
  * @return void.
@@ -75,7 +73,7 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
         'parent' => null,
         'group'  => null,
         'title' => $menu_title,
-        'href'  => wp_nonce_url( admin_url( '?page=unagi-notifications' ), 'unagi-notifications-nonce' ),
+        'href'  => wp_nonce_url( admin_url( 'admin.php?page=unagi-notifications' ), 'unagi-notifications-nonce' ),
         'meta' => [
             'title' => esc_html__( 'Notifications', 'unagi' ), // This title will show on hover.
         ]
@@ -83,15 +81,15 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
 }
 
 /**
- * For 0.1.0.1 version only.
+ * Create a notification submenu page.
  *
  * @return void.
  */
 function notification_page() {
 	add_submenu_page(
-		null,
-		'Unagi Notifications',
-		'',
+		'_do_not_exist',
+		'Notifications',
+		'Notifications',
 		'manage_options',
 		'unagi-notifications',
 		__NAMESPACE__  . '\notification_screen'
