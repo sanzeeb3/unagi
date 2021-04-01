@@ -23,7 +23,7 @@ function setup() {
 
 	add_action( 'admin_bar_menu', $n( 'add_admin_bar_menu' ), PHP_INT_MAX );
 	add_action( 'admin_enqueue_scripts', $n( 'enqueues' ) );
-	add_action( 'admin_init', $n( 'notification_screen' ) );
+	add_action( 'admin_menu', $n( 'notification_page' ) );
 }
 
 /**
@@ -75,7 +75,7 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
         'parent' => null,
         'group'  => null,
         'title' => $menu_title,
-        'href'  => admin_url( '?page=unagi-notifications' ),
+        'href'  => wp_nonce_url( admin_url( '?page=unagi-notifications' ), 'unagi-notifications-nonce' ),
         'meta' => [
             'title' => esc_html__( 'Notifications', 'unagi' ), // This title will show on hover.
         ]
@@ -83,9 +83,35 @@ function add_admin_bar_menu ( \WP_Admin_Bar $admin_bar ) {
 }
 
 /**
- * Notification page
+ * For 0.1.0.1 version only.
+ *
+ * @return void.
+ */
+function notification_page() {
+	add_submenu_page(
+		null,
+		'Unagi Notifications',
+		'',
+		'manage_options',
+		'unagi-notifications',
+		__NAMESPACE__  . '\notification_screen'
+	);
+};
+
+/**
+ * Notification page content
  */
 function notification_screen() {
+
+	if ( empty( $_GET['page'] ) ) {
+		return;
+	}
+
+	if ( 'unagi-notifications' !== $_GET['page'] ) {
+		return;
+	}
+
+	check_admin_referer( 'unagi-notifications-nonce' );
 
 	global $unagi_nags;
 
@@ -97,6 +123,9 @@ function notification_screen() {
 		$output = $notification_info['content'];
 
 	}
+
+	?>
+	<h2><?php esc_html_e( 'Notifications', 'unagi' ); ?></h2><?php
 
 	if ( empty( $output ) ) {
 		$output = sprintf(
